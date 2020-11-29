@@ -117,24 +117,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"css.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
+})({"main.js":[function(require,module,exports) {
+// import string from './css.js' //模块化
 var string = ".skin{\n    position: relative;\n}\n.nose{\n    border: 10px solid  #2e2e2e;\n    border-color: #2e2e2e transparent transparent;\n    border-bottom: none;\n    width: 0px;\n    height: 0px;\n    position: absolute;\n    left: 50%;\n    top: 145px;\n    margin-left: -10px;   \n    z-index: 1;\n}\n@keyframes wave{\n    0%{transform: rotate(0deg);}\n    33%{transform: rotate(5deg);}\n    66%{transform: rotate(-5deg);}\n    100%{transform: rotate(0deg);}\n}\n.nose:hover{\n    transform-origin: center bottom;\n    animation: wave 0.5s 1;\n}\n.circle{\n    position: absolute;\n    border: 1px solid #2e2e2e;\n    width: 20px;\n    height: 6px;   \n    top: -16px;\n    transform: translate(-50%);\n    border-radius: 10px 10px 0 0;\n    background:  #2e2e2e;\n}\n\n.eye{\n    border: 2px solid black;\n    width: 64px;\n    height: 64px;\n    position: absolute;\n    left: 50%;\n    top: 100px;\n    margin-left: -32px;\n    background: #2e2e2e;\n    border-radius: 50%;\n}\n.eye::before{\n    content: '';\n    display: block;\n    width: 25px;\n    height: 25px;\n    background: white;   \n    border: 2px solid black; \n    border-radius: 50%;\n    position: relative;\n    left: 8px;\n    top: 2px;\n}\n.eye.left{\n    transform: translate(-120px);\n}\n.eye.right{\n    transform: translate(120px);\n}\n.mouth{\n    position: absolute;\n    width: 146px;\n    height: 150px;   \n    top: 150px;\n    left: 50%;\n    transform: translate(-50%);\n    \n}\n.mouth .up .lip{\n    border: 3px solid #2e2e2e;\n    height: 30px;\n    width: 70px;\n    border-top-color: transparent;\n    position: relative;\n    /* top: -13px; */\n    position: absolute;\n    border-right-color: transparent;\n    border-left-color: transparent;\n    background: #ffe600;\n}\n.mouth .up .lip.left{\n    left: 1px;\n    transform: rotate(-20deg);\n    border-radius: 0 0 0 50px;\n }\n .mouth .up .lip.right{\n    right: 1px;\n    transform: rotate(20deg);\n    border-radius: 0 0 50px 0;\n }\n .mouth .up .lip::before{\n    content: '';\n    display: block;\n    width: 5px;\n    height: 30px;\n    position: absolute;\n    bottom: 0;\n    background: #ffe600;\n }\n .mouth .up .lip.left::before{\n    right: -4px;\n}\n.mouth .up .lip.right::before{\n    left: -4px;\n}\n.mouth .up .lip::after{\n    content: '';\n    position: absolute;\n    display: block;\n    width: 80px;\n    height: 8px;\n    top: -5px;\n    background: #ffe600;\n}\n.mouth .up .lip.left::after{\n    right: -4px;\n}\n.mouth .up .lip.right::after{\n    left: -4px;\n}\n.mouth .down{\n  /* border: 1px solid red;   */\n  height: 160px;\n  position: absolute;\n  top: 15px;\n  width: 100%;\n  overflow: hidden;\n  z-index: -1;\n}\n.mouth .down .circle1{\n    border: 3px solid black;\n    width: 125px;\n    height: 800px;\n    position: absolute;\n    bottom: 15px;\n    left: 50%;\n    transform: translate(-50%);    \n    border-radius: 100px/450px;\n    background: #9b000a;\n    overflow: hidden;\n}\n.mouth .down .circle1 .circle2{\n    /* border:1px solid  green ; */\n    height: 150px;\n    width: 150px;\n    position: absolute;\n    bottom: -35px;\n    left: 50%;\n    transform: translate(-50%);\n    border-radius: 50%;\n    background: #ff485f;\n}\n.face{\n    position: absolute;\n    left: 50%;\n    margin-left:-44px ;\n    top: 190px;\n    border: 2px solid black;\n    width: 88px;\n    height: 88px;\n    border-radius: 50%;\n    background: #ff0000;\n}\n.face.left{\n    transform: translateX(-180px);\n}\n.face.right{\n    transform: translateX(180px);\n} \n\n// \u53EF\u4EE5\u52A8\u52A8\u76AE\u5361\u4E18\u7684\u9F3B\u5B50~\n";
-var _default = string;
-exports.default = _default;
-},{}],"main.js":[function(require,module,exports) {
-"use strict";
-
-var _css = _interopRequireDefault(require("./css.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//模块化
 var player = {
   n: 0,
   time: 50,
@@ -144,8 +129,8 @@ var player = {
     demo2: document.querySelector('#demo2')
   },
   init: function init() {
-    player.ui.demo.innerText = _css.default.substr(0, player.n);
-    player.ui.demo2.innerHTML = _css.default.substr(0, player.n);
+    player.ui.demo.innerText = string.substr(0, player.n);
+    player.ui.demo2.innerHTML = string.substr(0, player.n);
     player.bindEvents();
     player.run();
   },
@@ -166,11 +151,11 @@ var player = {
   },
   codeShow: function codeShow() {
     player.n += 1;
-    player.ui.demo.innerText = _css.default.substr(0, player.n);
-    player.ui.demo2.innerHTML = _css.default.substr(0, player.n);
+    player.ui.demo.innerText = string.substr(0, player.n);
+    player.ui.demo2.innerHTML = string.substr(0, player.n);
     player.ui.demo.scrollTop = player.ui.demo.scrollHeight;
 
-    if (player.n > _css.default.length) {
+    if (player.n > string.length) {
       window.clearInterval(player.id);
       return;
     }
@@ -199,7 +184,7 @@ var player = {
   }
 };
 player.init();
-},{"./css.js":"css.js"}],"C:/Users/容新/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{}],"C:/Users/容新/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -227,7 +212,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "3392" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "3704" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
